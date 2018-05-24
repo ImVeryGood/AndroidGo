@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             return;
         }
         FragmentTransaction transation = getSupportFragmentManager().beginTransaction();
-        transation.hide(fragList.get(position));
+        transation.hide(fragList.get(mPosition));
         if (!fragList.get(position).isAdded()) {
             transation.add(R.id.frame_group, fragList.get(position)).show(fragList.get(position));
         } else {

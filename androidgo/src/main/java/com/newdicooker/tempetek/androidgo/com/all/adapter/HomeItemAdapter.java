@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.bean.BannerBean;
+import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
 
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private LayoutInflater inflater;
     private Context mContext;
     private List<BannerBean.DataBean> bannerList;
+    private List<HomeListBean.DataBean.DatasBean> homeList;
 
     public HomeItemAdapter(Context mContext) {
         this.mContext = mContext;
@@ -39,7 +42,13 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setBannerList(List<BannerBean.DataBean> bannerList) {
         this.bannerList = bannerList;
-        notifyDataSetChanged();
+        notifyItemChanged(0);
+
+    }
+
+    public void setArticleList(List<HomeListBean.DataBean.DatasBean> homeList) {
+        this.homeList = homeList;
+        notifyItemChanged(1, getItemCount() - 1);
     }
 
     @Override
@@ -94,6 +103,11 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
                 break;
             case 1:
+                ItemViewHolder viewHolder = (ItemViewHolder) holder;
+                viewHolder.info.setText(homeList.get(position).getChapterName());
+                viewHolder.title.setText(homeList.get(position).getTitle());
+                viewHolder.userName.setText(homeList.get(position).getAuthor());
+                viewHolder.date.setText(homeList.get(position).getNiceDate());
                 break;
         }
     }
@@ -110,12 +124,25 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 10;
+        return homeList == null ? 1 : homeList.size();
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.icon)
+        ImageView icon;
+        @BindView(R.id.user_name)
+        TextView userName;
+        @BindView(R.id.info)
+        TextView info;
+        @BindView(R.id.title)
+        TextView title;
+        @BindView(R.id.date)
+        TextView date;
+
         public ItemViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 
