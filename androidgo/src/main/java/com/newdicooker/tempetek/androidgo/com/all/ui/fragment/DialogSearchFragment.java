@@ -55,7 +55,7 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
     /*输入监听*/
     @Override
     public boolean onQueryTextSubmit(String query) {
-        
+
         return false;
     }
 

@@ -1,14 +1,19 @@
 package com.newdicooker.tempetek.androidgo;
 
-import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.NestedScrollView;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RadioGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseActivity;
+import com.newdicooker.tempetek.androidgo.com.all.helper.BottomNavigationViewHelper;
+import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.DialogSearchFragment;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.HomeFragment;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.KeowledgeFragment;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.NavgationFragment;
@@ -18,18 +23,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.frame_group)
     FrameLayout frameGroup;
-    @BindView(R.id.nested_scroll)
-    NestedScrollView nestedScroll;
-    @BindView(R.id.bottom_group)
-    RadioGroup bottomGroup;
-    private Boolean isBottomShow = true;
+    @BindView(R.id.search_icon)
+    ImageView searchIcon;
+    @BindView(R.id.navigation_view)
+    BottomNavigationView navigationView;
     private HomeFragment homeF;
     private KeowledgeFragment keowledgeF;
     private NavgationFragment navgationF;
@@ -72,25 +77,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private void setNestedListener() {
-        bottomGroup.setOnCheckedChangeListener(this);
-        nestedScroll.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                //上滑 并且 正在显示底部栏
-                if (scrollY - oldScrollY > 0 && isBottomShow) {
-                    isBottomShow = false;
-                    //将Y属性变为底部栏高度  (相当于隐藏了)
-                    bottomGroup.animate().translationY(bottomGroup.getHeight());
-                } else if (scrollY - oldScrollY < 0 && !isBottomShow) {
-                    isBottomShow = true;
-                    bottomGroup.animate().translationY(0);
-                }
-            }
-        });
+        navigationView.setOnNavigationItemSelectedListener(this);
+
     }
 
 
     private void setBottomNagiation() {
+        BottomNavigationViewHelper.disableShiftMode(navigationView);
 
     }
 
@@ -126,21 +119,34 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
 
+    @OnClick({R.id.search_icon})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.search_icon:
+                DialogSearchFragment searchFragment = new DialogSearchFragment();
+                searchFragment.setStyle(R.style.DialogStyle, DialogFragment.STYLE_NO_TITLE);
+                searchFragment.show(getSupportFragmentManager(), "SearchDialogFragment");
+                break;
+
+        }
+    }
+
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-        switch (i) {
-            case R.id.home_btn:
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.tab_main_pager:
                 setFrament(0, getResources().getString(R.string.home_text));
                 break;
-            case R.id.knowledge_btn:
+            case R.id.tab_knowledge_hierarchy:
                 setFrament(1, getResources().getString(R.string.knowledge));
                 break;
-            case R.id.navigation_btn:
+            case R.id.tab_navigation:
                 setFrament(2, getResources().getString(R.string.nagitation));
                 break;
-            case R.id.project_btn:
+            case R.id.tab_project:
                 setFrament(3, getResources().getString(R.string.project));
                 break;
         }
+        return true;
     }
 }

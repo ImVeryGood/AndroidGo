@@ -40,6 +40,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void initData() {
     }
 
+    protected void setLogin() {
+
+    }
+
     public void setImmerBar() {
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.init();

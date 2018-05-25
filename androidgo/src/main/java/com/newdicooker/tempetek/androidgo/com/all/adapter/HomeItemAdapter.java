@@ -1,6 +1,7 @@
 package com.newdicooker.tempetek.androidgo.com.all.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.bean.BannerBean;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
+import com.newdicooker.tempetek.androidgo.com.all.ui.activity.WebActivity;
 
 import java.util.List;
 
@@ -100,6 +103,14 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         }
                     });
                     headHolder.pageNum.setText("/" + bannerList.size());
+                    headHolder.banner.setOnItemClickListener(new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            Intent intent = new Intent(mContext, WebActivity.class);
+                            intent.putExtra("url", bannerList.get(position).getUrl());
+                            mContext.startActivity(intent);
+                        }
+                    });
                 }
                 break;
             case 1:

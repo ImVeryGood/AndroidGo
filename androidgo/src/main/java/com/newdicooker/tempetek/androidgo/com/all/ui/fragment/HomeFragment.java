@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment implements OnRefreshListener, OnLoadm
     }
 
     private void setListener() {
+        smartRefresh.setHeaderTriggerRate(0.4f);
         smartRefresh.setOnRefreshListener(this);
         smartRefresh.setOnLoadmoreListener(this);
         smartRefresh.autoRefresh();
@@ -130,6 +131,7 @@ public class HomeFragment extends Fragment implements OnRefreshListener, OnLoadm
     /*刷新*/
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
+        page = 0;
         getBanner();
         getArticle();
     }
@@ -145,10 +147,11 @@ public class HomeFragment extends Fragment implements OnRefreshListener, OnLoadm
     public void setNoRefresh() {
         if (smartRefresh.isRefreshing()) {
             homeList.clear();
-            smartRefresh.finishRefresh();
+            smartRefresh.finishRefresh(1000);
         }
         if (smartRefresh.isLoading()) {
-            smartRefresh.finishLoadmore();
+            smartRefresh.finishLoadmore(2000);
+
         }
     }
 }

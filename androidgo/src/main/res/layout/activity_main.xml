@@ -34,79 +34,34 @@
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/search_icon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@mipmap/search" />
                 </RelativeLayout>
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nested_scroll"
+        <FrameLayout
+            android:id="@+id/frame_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cardview_shadow_end_color"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <FrameLayout
-                android:id="@+id/frame_group"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </android.support.v4.widget.NestedScrollView>
-
-
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:elevation="@dimen/cardview_compat_inset_shadow"
+            app:itemBackground="@color/blue_dark_btn"
+            app:layout_behavior="@string/bye_burger_bottom_behavior"
+            app:menu="@menu/bottom_navigation_main" />
     </android.support.design.widget.CoordinatorLayout>
 
-    <RadioGroup
-        android:id="@+id/bottom_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
-
-        <RadioButton
-            android:id="@+id/home_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/home_select"
-            android:gravity="center_horizontal"
-            android:text="@string/home_text" />
-
-        <RadioButton
-            android:id="@+id/knowledge_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/knowledge_select"
-            android:gravity="center_horizontal"
-            android:text="@string/knowledge" />
-
-        <RadioButton
-            android:id="@+id/navigation_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/navgation_select"
-            android:gravity="center_horizontal"
-            android:text="@string/nagitation" />
-
-        <RadioButton
-            android:id="@+id/project_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/project_select"
-            android:gravity="center_horizontal"
-            android:text="@string/project" />
-    </RadioGroup>
 </RelativeLayout>
