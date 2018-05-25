@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,4 +13,54 @@
         android:queryHint="输入搜索内容"
         app:iconifiedByDefault="true" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_view"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/hot_search"
+        android:textColor="@color/deep_red" />
+
+    <com.zhy.view.flowlayout.FlowLayout
+        android:id="@+id/flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hot"
+        android:layout_marginTop="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/history_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flow_layout">
+
+        <TextView
+            android:id="@+id/search_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/search_history"
+            android:textColor="@color/blue_btn" />
+
+        <RadioButton
+            android:id="@+id/clear_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:button="@null"
+            android:drawableLeft="@mipmap/clear_history"
+            android:text="清空记录"
+            android:textColor="@color/deep_red"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/history_layout"
+        android:layout_marginTop="5dp" />
+</RelativeLayout>
