@@ -8,6 +8,8 @@ package com.newdicooker.tempetek.androidgo.com.all.url;
  */
 
 public class NetUrl {
+    public static String basePath = "http://www.wanandroid.com/";
+
     /**
      * 首页列表
      *
@@ -15,7 +17,7 @@ public class NetUrl {
      * @return
      */
     public static String homeListUrl(int page) {
-        return "http://www.wanandroid.com/article/list/" + page + "/json";
+        return basePath + "article/list/" + page + "/json";
     }
 
     /**
@@ -25,5 +27,10 @@ public class NetUrl {
      */
     public static String homeBanner() {
         return "http://www.wanandroid.com/banner/json";
+    }
+
+    /*热门搜索*/
+    public static String hotSearch() {
+        return basePath + "hotkey/json";
     }
 }
