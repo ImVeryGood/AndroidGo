@@ -13,7 +13,7 @@ import com.newdicooker.tempetek.androidgo.R;
  * A simple {@link Fragment} subclass.
  */
 public class KeowledgeFragment extends Fragment {
-
+    private View view;
 
     public KeowledgeFragment() {
         // Required empty public constructor
@@ -23,8 +23,11 @@ public class KeowledgeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the home_head_layout for this fragment
-        return inflater.inflate(R.layout.fragment_keowledge2, container, false);
+        view = inflater.inflate(R.layout.fragment_keowledge2, container, false);
+
+        return view;
     }
+
+
 
 }

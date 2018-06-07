@@ -4,20 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_shadow_end_color"
-    android:fitsSystemWindows="true"
     tools:context="com.newdicooker.tempetek.androidgo.com.all.ui.fragment.HomeFragment">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/smart_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlPrimaryColor="@color/colorAccent"
-        android:overScrollMode="ifContentScrolls">
+        android:overScrollMode="ifContentScrolls"
+        app:srlPrimaryColor="@color/colorAccent">
+        <!--自定义刷新头布局，只需要在SmartRefreshLayout下写自己的刷新布局就好了-->
+        <!-- <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/colorPrimaryOverlay">
 
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                 android:text="我是刷新的头" />
+         </RelativeLayout>-->
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="match_parent" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"

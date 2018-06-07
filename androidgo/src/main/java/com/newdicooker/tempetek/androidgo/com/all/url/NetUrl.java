@@ -33,4 +33,17 @@ public class NetUrl {
     public static String hotSearch() {
         return basePath + "hotkey/json";
     }
+
+    public static String getSearch(int page) {
+        return basePath + "article/query/" + page + "/json";
+    }
+
+    /**
+     * 收藏网址
+     *
+     * @return
+     */
+    public static String collectUrl() {
+        return basePath + "lg/collect/addtool/json";
+    }
 }

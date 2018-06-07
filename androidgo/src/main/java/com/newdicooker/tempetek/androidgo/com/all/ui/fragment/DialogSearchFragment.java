@@ -13,12 +13,18 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.newdicooker.tempetek.androidgo.R;
+import com.newdicooker.tempetek.androidgo.com.all.bean.HotSearchBean;
+import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
 import com.newdicooker.tempetek.androidgo.com.all.helper.OkHttpManager;
 import com.newdicooker.tempetek.androidgo.com.all.url.NetUrl;
 import com.zhy.view.flowlayout.FlowLayout;
+import com.zhy.view.flowlayout.TagAdapter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,12 +35,12 @@ import okhttp3.Request;
 /**
  * 搜索dialogFragment
  */
-public class DialogSearchFragment extends DialogFragment implements SearchView.OnQueryTextListener {
+public class DialogSearchFragment extends DialogFragment implements SearchView.OnQueryTextListener, TagFlowLayout.OnTagClickListener {
     @BindView(R.id.search_view)
     SearchView searchView;
     Unbinder unbinder;
     @BindView(R.id.flow_layout)
-    FlowLayout flowLayout;
+    TagFlowLayout flowLayout;
     @BindView(R.id.search_history)
     TextView searchHistory;
     @BindView(R.id.clear_history)
@@ -44,6 +50,8 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     private View view;
+
+    private List<HotSearchBean.DataBean> hotTabList;
 
     public DialogSearchFragment() {
         // Required empty public constructor
@@ -57,7 +65,6 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
         unbinder = ButterKnife.bind(this, view);
         setSearchView();
         getHotSearch();
-
         return view;
     }
 
@@ -79,7 +86,7 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
     /*输入监听*/
     @Override
     public boolean onQueryTextSubmit(String query) {
-
+        JudgeUtils.judjeToSearchResult(getContext(), query);
         return false;
     }
 
@@ -109,14 +116,34 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
             @Override
             public void onSuccess(String response) {
                 if (!TextUtils.isEmpty(response)) {
-
+                    HotSearchBean searchBean = new Gson().fromJson(response, HotSearchBean.class);
+                    hotTabList = searchBean.getData();
+                    setFlow(hotTabList);
                 }
 
             }
         });
     }
 
-    public void setFlow() {
-        
+    public void setFlow(List<HotSearchBean.DataBean> hotTabList) {
+        flowLayout.setAdapter(new TagAdapter<HotSearchBean.DataBean>(hotTabList) {
+
+
+            @Override
+            public View getView(FlowLayout parent, int position, HotSearchBean.DataBean dataBean) {
+                TextView textView = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.hot_flow_item, null);
+                textView.setText(dataBean.getName());
+                return textView;
+            }
+        });
+        flowLayout.setOnTagClickListener(this);
     }
+
+    @Override
+    public boolean onTagClick(View view, int position, FlowLayout parent) {
+        JudgeUtils.judjeToSearchResult(getContext(), hotTabList.get(position).getName());
+        return true;
+    }
+
+
 }
