@@ -6,9 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.newdicooker.tempetek.androidgo.R;
-import com.newdicooker.tempetek.androidgo.com.all.adapter.SearchArticleAdapter;
+import com.newdicooker.tempetek.androidgo.com.all.adapter.home.SearchArticleAdapter;
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseActivity;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
 import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
@@ -50,7 +49,6 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
 
     @Override
     protected void initView() {
-        super.initView();
         searchArticleAdapter = new SearchArticleAdapter(getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(searchArticleAdapter);
@@ -58,7 +56,6 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
 
     @Override
     protected void initData() {
-        super.initData();
         mIntent = getIntent();
         k = mIntent.getStringExtra("k");
         titleName.setText(k);
@@ -68,7 +65,7 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
 
     @Override
     protected void initListener() {
-        super.initListener();
+
         searchArticleAdapter.onClickListener(this);
         smartRefresh.setEnableLoadmore(true);
         smartRefresh.setOnRefreshLoadmoreListener(this);
@@ -80,18 +77,17 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
     }
 
     public void searchArticle() {
-        OkHttpManager.getInstance().postNet(NetUrl.getSearch(page), new OkHttpManager.ResultCallback() {
+        OkHttpManager.getInstance().postNet(NetUrl.getSearch(page), new OkHttpManager.ResultCallback<HomeListBean>() {
             @Override
             public void onFailed(Request request, IOException e) {
                 setNoRefresh();
             }
 
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(HomeListBean response) {
                 setNoRefresh();
-                bean = new Gson().fromJson(response, HomeListBean.class);
-                for (int i = 0; i < bean.getData().getDatas().size(); i++) {
-                    list.add(bean.getData().getDatas().get(i));
+                for (int i = 0; i < response.getData().getDatas().size(); i++) {
+                    list.add(response.getData().getDatas().get(i));
                 }
                 searchArticleAdapter.setArticleDate(list);
             }

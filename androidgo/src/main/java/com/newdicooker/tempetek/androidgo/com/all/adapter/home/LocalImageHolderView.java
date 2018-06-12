@@ -1,4 +1,4 @@
-package com.newdicooker.tempetek.androidgo.com.all.adapter;
+package com.newdicooker.tempetek.androidgo.com.all.adapter.home;
 
 import android.content.Context;
 import android.view.View;

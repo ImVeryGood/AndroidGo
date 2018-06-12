@@ -56,14 +56,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     protected void initData() {
-        super.initData();
+
 
     }
 
 
     @Override
     protected void initView() {
-        super.initView();
         setBottomNagiation();
         setFragment();
 
@@ -72,7 +71,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     protected void initListener() {
-        super.initListener();
         setNestedListener();
     }
 

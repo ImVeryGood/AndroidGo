@@ -29,16 +29,27 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * 布局id
+     *
+     * @return
+     */
     protected abstract int setLayoutId();
 
-    protected void initListener() {
-    }
+    /**
+     * 监听
+     */
+    protected abstract void initListener();
 
-    protected void initView() {
-    }
+    /**
+     * view的操作
+     */
+    protected abstract void initView();
 
-    protected void initData() {
-    }
+    /**
+     * date的操作
+     */
+    protected abstract void initData();
 
     protected void setLogin() {
 

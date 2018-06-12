@@ -23,12 +23,12 @@ public class WebActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        super.initView();
+
     }
 
     @Override
     protected void initData() {
-        super.initData();
+
         intent = getIntent();
         url = intent.getStringExtra("url");
         initWebView();
@@ -36,7 +36,7 @@ public class WebActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-        super.initListener();
+
     }
 
     public void initWebView() {

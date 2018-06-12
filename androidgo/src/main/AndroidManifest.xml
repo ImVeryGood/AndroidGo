@@ -11,9 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:overrideLibrary="io.fogcloud.sdk.easylink"
-        tools:replace="android:allowBackup"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        tools:replace="android:allowBackup">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".com.all.BaseActivity" />
         <activity android:name=".com.all.ui.activity.WebActivity" />
-        <activity android:name=".com.all.ui.activity.SearchResultActivity"></activity>
+        <activity android:name=".com.all.ui.activity.SearchResultActivity" />
+        <activity android:name=".com.all.ui.activity.knowledge.KnowledgeActivity"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HotSearchBean;
 import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
@@ -107,21 +105,18 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
     }
 
     public void getHotSearch() {
-        OkHttpManager.getInstance().getNet(NetUrl.hotSearch(), new OkHttpManager.ResultCallback() {
+        OkHttpManager.getInstance().getNet(NetUrl.hotSearch(), new OkHttpManager.ResultCallback<HotSearchBean>() {
             @Override
             public void onFailed(Request request, IOException e) {
 
             }
 
             @Override
-            public void onSuccess(String response) {
-                if (!TextUtils.isEmpty(response)) {
-                    HotSearchBean searchBean = new Gson().fromJson(response, HotSearchBean.class);
-                    hotTabList = searchBean.getData();
-                    setFlow(hotTabList);
-                }
-
+            public void onSuccess(HotSearchBean response) {
+                hotTabList = response.getData();
+                setFlow(hotTabList);
             }
+
         });
     }
 

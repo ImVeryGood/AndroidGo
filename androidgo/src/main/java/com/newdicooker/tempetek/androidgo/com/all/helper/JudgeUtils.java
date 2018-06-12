@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.newdicooker.tempetek.androidgo.com.all.ui.activity.SearchResultActivity;
 import com.newdicooker.tempetek.androidgo.com.all.ui.activity.WebActivity;
+import com.newdicooker.tempetek.androidgo.com.all.ui.activity.knowledge.KnowledgeActivity;
 
 /**
  * Created by SunPengCheng
@@ -24,5 +25,12 @@ public class JudgeUtils {
         Intent intent = new Intent(mContext, WebActivity.class);
         intent.putExtra("url", link);
         mContext.startActivity(intent);
+    }
+
+    public static void judgeToKnowledge(Context mActivity, String titile, String childString) {
+        Intent intent = new Intent(mActivity, KnowledgeActivity.class);
+        intent.putExtra("title", titile);
+        intent.putExtra("tabString", childString);
+        mActivity.startActivity(intent);
     }
 }

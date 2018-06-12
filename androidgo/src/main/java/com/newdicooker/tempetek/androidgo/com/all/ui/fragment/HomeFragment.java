@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.Gson;
 import com.newdicooker.tempetek.androidgo.R;
-import com.newdicooker.tempetek.androidgo.com.all.adapter.HomeItemAdapter;
+import com.newdicooker.tempetek.androidgo.com.all.adapter.home.HomeItemAdapter;
 import com.newdicooker.tempetek.androidgo.com.all.bean.BannerBean;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
 import com.newdicooker.tempetek.androidgo.com.all.helper.OkHttpManager;
@@ -89,40 +87,35 @@ public class HomeFragment extends Fragment implements OnRefreshListener, OnLoadm
     }
 
     public void getBanner() {
-        OkHttpManager.getInstance().getNet(NetUrl.homeBanner(), new OkHttpManager.ResultCallback() {
+        OkHttpManager.getInstance().getNet(NetUrl.homeBanner(), new OkHttpManager.ResultCallback<BannerBean>() {
             @Override
             public void onFailed(Request request, IOException e) {
 
             }
 
             @Override
-            public void onSuccess(String response) {
-                if (!TextUtils.isEmpty(response)) {
-                    bannerBean = new Gson().fromJson(response, BannerBean.class);
-                    adapter.setBannerList(bannerBean.getData());
-                }
+            public void onSuccess(BannerBean response) {
+                adapter.setBannerList(response.getData());
             }
+
         });
     }
 
     public void getArticle() {
-        OkHttpManager.getInstance().getNet(NetUrl.homeListUrl(page), new OkHttpManager.ResultCallback() {
+        OkHttpManager.getInstance().getNet(NetUrl.homeListUrl(page), new OkHttpManager.ResultCallback<HomeListBean>() {
             @Override
             public void onFailed(Request request, IOException e) {
-
+                setNoRefresh();
             }
 
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(HomeListBean response) {
                 setNoRefresh();
-                if (!TextUtils.isEmpty(response)) {
-                    homeListBean = new Gson().fromJson(response, HomeListBean.class);
-                    for (int i = 0; i < homeListBean.getData().getDatas().size(); i++) {
-                        homeList.add(homeListBean.getData().getDatas().get(i));
-                    }
-                    adapter.setArticleList(homeList);
-
+                for (int i = 0; i < response.getData().getDatas().size(); i++) {
+                    homeList.add(response.getData().getDatas().get(i));
                 }
+                adapter.setArticleList(homeList);
+
 
             }
         });

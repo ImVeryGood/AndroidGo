@@ -46,4 +46,24 @@ public class NetUrl {
     public static String collectUrl() {
         return basePath + "lg/collect/addtool/json";
     }
+
+    /**
+     * 知识体系
+     *
+     * @return
+     */
+    public static String knowledgeUrl() {
+        return basePath + "tree/json";
+    }
+
+    /**
+     * 知识体系二级页面
+     *
+     * @param page
+     * @param cid
+     * @return
+     */
+    public static String knowledgeSecondUrl(int page, int cid) {
+        return basePath + "article/list/" + page + "/json?cid=" + cid;
+    }
 }

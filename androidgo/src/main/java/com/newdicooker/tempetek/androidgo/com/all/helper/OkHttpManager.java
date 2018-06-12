@@ -3,7 +3,12 @@ package com.newdicooker.tempetek.androidgo.com.all.helper;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.gson.Gson;
+import com.google.gson.internal.$Gson$Types;
+
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -118,21 +123,43 @@ public class OkHttpManager {
                     e.printStackTrace();
                 }
                 final String finalStr = str;
+
                 okHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        //成功时执行的方法
-                        resultCallback.onSuccess(finalStr);
+                        if (resultCallback.mType == String.class) {
+                            //成功时执行的方法
+                            resultCallback.onSuccess(finalStr);
+                        } else {
+                            Object object = new Gson().fromJson(finalStr, resultCallback.mType);
+                            resultCallback.onSuccess(object);
+                        }
+
                     }
                 });
             }
         });
     }
 
-    public static abstract class ResultCallback {
+    public static abstract class ResultCallback<T> {
+        Type mType;
+
+        public ResultCallback() {
+            mType = getSuperclassTypeParameter(getClass());
+        }
+
+        static Type getSuperclassTypeParameter(Class<?> subclass) {
+            Type superclass = subclass.getGenericSuperclass();
+            if (superclass instanceof Class) {
+                throw new RuntimeException("Missing type parameter.");
+            }
+            ParameterizedType parameterized = (ParameterizedType) superclass;
+            return $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
+        }
+
         public abstract void onFailed(Request request, IOException e);
 
-        public abstract void onSuccess(String response);
+        public abstract void onSuccess(T response);
     }
 
     /**
