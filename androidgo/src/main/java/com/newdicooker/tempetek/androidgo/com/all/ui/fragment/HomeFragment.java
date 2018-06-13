@@ -66,7 +66,6 @@ public class HomeFragment extends Fragment implements OnRefreshListener, OnLoadm
         smartRefresh.setOnRefreshListener(this);
         smartRefresh.setOnLoadmoreListener(this);
         smartRefresh.autoRefresh();
-
     }
 
     private void setData() {

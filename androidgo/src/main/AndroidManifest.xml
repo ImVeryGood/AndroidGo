@@ -14,17 +14,27 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:overrideLibrary="io.fogcloud.sdk.easylink"
         tools:replace="android:allowBackup">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".com.all.BaseActivity" />
-        <activity android:name=".com.all.ui.activity.WebActivity" />
-        <activity android:name=".com.all.ui.activity.SearchResultActivity" />
-        <activity android:name=".com.all.ui.activity.knowledge.KnowledgeActivity"></activity>
+        <activity
+            android:name=".com.all.BaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".com.all.ui.activity.WebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".com.all.ui.activity.SearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".com.all.ui.activity.knowledge.KnowledgeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

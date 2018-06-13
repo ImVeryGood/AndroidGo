@@ -3,6 +3,7 @@ package com.newdicooker.tempetek.androidgo.com.all.adapter.home;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.bean.BannerBean;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
+import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
 import com.newdicooker.tempetek.androidgo.com.all.ui.activity.WebActivity;
 
 import java.util.List;
@@ -72,7 +74,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         int viewType = getItemViewType(position);
         switch (viewType) {
             case 0:
@@ -119,6 +121,12 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 viewHolder.title.setText(homeList.get(position).getTitle());
                 viewHolder.userName.setText(homeList.get(position).getAuthor());
                 viewHolder.date.setText(homeList.get(position).getNiceDate());
+                viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        JudgeUtils.judgeToWebActivity(mContext, homeList.get(position).getLink());
+                    }
+                });
                 break;
         }
     }
@@ -150,6 +158,8 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView title;
         @BindView(R.id.date)
         TextView date;
+        @BindView(R.id.card_view)
+        CardView cardView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
