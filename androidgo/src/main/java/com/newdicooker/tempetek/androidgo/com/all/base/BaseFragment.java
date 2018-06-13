@@ -8,6 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.newdicooker.tempetek.androidgo.com.all.bean.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -31,6 +37,9 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContentView = inflater.inflate(setLayoutResourceID(), container, false);
         unbinder = ButterKnife.bind(this, mContentView);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         initView();
         initData();
         initListener();
@@ -59,9 +68,14 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initListener();
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(MessageEvent messageEvent) {
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
 }

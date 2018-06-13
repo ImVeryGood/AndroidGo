@@ -3,7 +3,6 @@ package com.newdicooker.tempetek.androidgo.com.all.ui.activity.knowledge;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
@@ -13,7 +12,10 @@ import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.adapter.knowledge.KnowledgePagerAdapter;
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseActivity;
 import com.newdicooker.tempetek.androidgo.com.all.bean.KnowledgeBean;
+import com.newdicooker.tempetek.androidgo.com.all.bean.MessageEvent;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.knowledge.KnowledgeTabFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class KnowledgeActivity extends BaseActivity implements OnTabSelectListener {
+public class KnowledgeActivity extends BaseActivity implements OnTabSelectListener, ViewPager.OnPageChangeListener {
     @BindView(R.id.title_name)
     TextView titleName;
     @BindView(R.id.table_layout)
@@ -56,20 +58,20 @@ public class KnowledgeActivity extends BaseActivity implements OnTabSelectListen
         childrenBeen = arrayList.getChildren();
         for (KnowledgeBean.DataBean.ChildrenBean bean : childrenBeen) {
             stringList.add(bean.getName());
-            Log.d("SSSSS", "initData: id" + bean.getId());
-            fragments.add(KnowledgeTabFragment.getInstance(bean.getId()));
+            fragments.add(KnowledgeTabFragment.getInstance(childrenBeen.get(0).getId() + ""));
         }
         pagerAdapter.setTitles(stringList);
         viewPager.setAdapter(pagerAdapter);
         pagerAdapter.setFragments(fragments);
         tableLayout.setViewPager(viewPager);
-        //tableLayout.setCurrentTab(0);
-        //viewPager.setCurrentItem(0);
+        tableLayout.setCurrentTab(0);
+        viewPager.setCurrentItem(0);
     }
 
     @Override
     protected void initListener() {
         tableLayout.setOnTabSelectListener(this);
+        viewPager.addOnPageChangeListener(this);
 
     }
 
@@ -80,11 +82,26 @@ public class KnowledgeActivity extends BaseActivity implements OnTabSelectListen
 
     @Override
     public void onTabSelect(int position) {
-        Log.d("SSSSSS", "onTabSelect: position==" + position);
+        EventBus.getDefault().post(new MessageEvent(childrenBeen.get(position).getId() + ""));
     }
 
     @Override
     public void onTabReselect(int position) {
-        Log.d("SSSSSS", "onTabReselect: position==" + position);
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        EventBus.getDefault().post(new MessageEvent(childrenBeen.get(position).getId() + ""));
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

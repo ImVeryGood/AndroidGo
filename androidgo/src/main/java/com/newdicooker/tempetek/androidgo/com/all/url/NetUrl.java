@@ -63,7 +63,7 @@ public class NetUrl {
      * @param cid
      * @return
      */
-    public static String knowledgeSecondUrl(int page, int cid) {
+    public static String knowledgeSecondUrl(int page, String cid) {
         return basePath + "article/list/" + page + "/json?cid=" + cid;
     }
 }
