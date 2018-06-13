@@ -1,4 +1,4 @@
-package com.newdicooker.tempetek.androidgo.com.all.helper;
+package com.newdicooker.tempetek.androidgo.com.all.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

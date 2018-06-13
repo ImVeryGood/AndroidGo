@@ -17,7 +17,7 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.bean.BannerBean;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
-import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
+import com.newdicooker.tempetek.androidgo.com.all.utils.JudgeUtils;
 import com.newdicooker.tempetek.androidgo.com.all.ui.activity.WebActivity;
 
 import java.util.List;

@@ -72,6 +72,10 @@ public abstract class BaseFragment extends Fragment {
     public void onEvent(MessageEvent messageEvent) {
     }
 
+    protected void getNetData() {
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

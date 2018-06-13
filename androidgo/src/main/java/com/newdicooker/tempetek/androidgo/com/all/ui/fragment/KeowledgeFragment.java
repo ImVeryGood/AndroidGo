@@ -12,8 +12,8 @@ import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.adapter.knowledge.KnowledgeAdapter;
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseFragment;
 import com.newdicooker.tempetek.androidgo.com.all.bean.KnowledgeBean;
-import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
-import com.newdicooker.tempetek.androidgo.com.all.helper.OkHttpManager;
+import com.newdicooker.tempetek.androidgo.com.all.utils.JudgeUtils;
+import com.newdicooker.tempetek.androidgo.com.all.utils.OkHttpManager;
 import com.newdicooker.tempetek.androidgo.com.all.url.NetUrl;
 
 import java.io.IOException;

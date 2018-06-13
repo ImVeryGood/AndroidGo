@@ -66,4 +66,13 @@ public class NetUrl {
     public static String knowledgeSecondUrl(int page, String cid) {
         return basePath + "article/list/" + page + "/json?cid=" + cid;
     }
+
+    /**
+     * 导航
+     *
+     * @return
+     */
+    public static String navgationUrl() {
+        return basePath + "navi/json";
+    }
 }

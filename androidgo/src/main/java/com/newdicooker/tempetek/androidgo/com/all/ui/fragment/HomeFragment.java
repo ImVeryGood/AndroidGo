@@ -13,7 +13,7 @@ import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.adapter.home.HomeItemAdapter;
 import com.newdicooker.tempetek.androidgo.com.all.bean.BannerBean;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
-import com.newdicooker.tempetek.androidgo.com.all.helper.OkHttpManager;
+import com.newdicooker.tempetek.androidgo.com.all.utils.OkHttpManager;
 import com.newdicooker.tempetek.androidgo.com.all.url.NetUrl;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -40,8 +40,6 @@ public class HomeFragment extends Fragment implements OnRefreshListener, OnLoadm
     SmartRefreshLayout smartRefresh;
     private View view;
     private HomeItemAdapter adapter;
-    private BannerBean bannerBean;
-    private HomeListBean homeListBean;
     private int page;
     private List<HomeListBean.DataBean.DatasBean> homeList;
 

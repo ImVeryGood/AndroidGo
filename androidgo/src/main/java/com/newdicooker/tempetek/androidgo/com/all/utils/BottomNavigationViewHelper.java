@@ -1,4 +1,4 @@
-package com.newdicooker.tempetek.androidgo.com.all.helper;
+package com.newdicooker.tempetek.androidgo.com.all.utils;
 
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;

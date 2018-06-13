@@ -14,8 +14,9 @@ import android.widget.TextView;
 
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HotSearchBean;
-import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
-import com.newdicooker.tempetek.androidgo.com.all.helper.OkHttpManager;
+import com.newdicooker.tempetek.androidgo.com.all.utils.CommonUtils;
+import com.newdicooker.tempetek.androidgo.com.all.utils.JudgeUtils;
+import com.newdicooker.tempetek.androidgo.com.all.utils.OkHttpManager;
 import com.newdicooker.tempetek.androidgo.com.all.url.NetUrl;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -128,6 +129,7 @@ public class DialogSearchFragment extends DialogFragment implements SearchView.O
             public View getView(FlowLayout parent, int position, HotSearchBean.DataBean dataBean) {
                 TextView textView = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.hot_flow_item, null);
                 textView.setText(dataBean.getName());
+                textView.setTextColor(CommonUtils.randomColor());
                 return textView;
             }
         });

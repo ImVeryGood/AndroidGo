@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseActivity;
-import com.newdicooker.tempetek.androidgo.com.all.helper.BottomNavigationViewHelper;
+import com.newdicooker.tempetek.androidgo.com.all.utils.BottomNavigationViewHelper;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.DialogSearchFragment;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.HomeFragment;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.KeowledgeFragment;

@@ -10,8 +10,8 @@ import com.newdicooker.tempetek.androidgo.com.all.adapter.home.SearchArticleAdap
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseFragment;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
 import com.newdicooker.tempetek.androidgo.com.all.bean.MessageEvent;
-import com.newdicooker.tempetek.androidgo.com.all.helper.JudgeUtils;
-import com.newdicooker.tempetek.androidgo.com.all.helper.OkHttpManager;
+import com.newdicooker.tempetek.androidgo.com.all.utils.JudgeUtils;
+import com.newdicooker.tempetek.androidgo.com.all.utils.OkHttpManager;
 import com.newdicooker.tempetek.androidgo.com.all.inter.ItemClickListener;
 import com.newdicooker.tempetek.androidgo.com.all.url.NetUrl;
 
