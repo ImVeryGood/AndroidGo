@@ -1,6 +1,7 @@
 package com.newdicooker.tempetek.androidgo.com.all.base;
 
 import android.app.Application;
+import android.content.Context;
 
 /**
  * Created by SunPengCheng
@@ -10,10 +11,25 @@ import android.app.Application;
  */
 
 public class BaseApplication extends Application {
+    public static Context mContext;
+    private static BaseApplication baseApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        if (baseApplication == null) {
+            baseApplication = this;
+        }
     }
 
+    public  Context getContext() {
+        if (mContext == null) {
+            mContext = getInstance().getApplicationContext();
+        }
+        return mContext;
+    }
+
+    public static Application getInstance() {
+        return baseApplication;
+    }
 }

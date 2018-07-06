@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.$Gson$Types;
 
 import java.io.IOException;
@@ -116,6 +117,7 @@ public class OkHttpManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 String str = "";
                 try {
                     str = response.body().string();
@@ -131,8 +133,14 @@ public class OkHttpManager {
                             //成功时执行的方法
                             resultCallback.onSuccess(finalStr);
                         } else {
-                            Object object = new Gson().fromJson(finalStr, resultCallback.mType);
-                            resultCallback.onSuccess(object);
+                            Object object = null;
+                            try {
+                                object = new Gson().fromJson(finalStr, resultCallback.mType);
+                                resultCallback.onSuccess(object);
+                            } catch (JsonSyntaxException e) {
+                                e.printStackTrace();
+                            }
+
                         }
 
                     }
@@ -177,4 +185,6 @@ public class OkHttpManager {
             this.value = value;
         }
     }
+
+
 }

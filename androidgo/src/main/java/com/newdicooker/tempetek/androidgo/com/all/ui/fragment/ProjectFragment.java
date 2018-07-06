@@ -1,30 +1,53 @@
 package com.newdicooker.tempetek.androidgo.com.all.ui.fragment;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.newdicooker.tempetek.androidgo.R;
+import com.newdicooker.tempetek.androidgo.com.all.base.BaseFragment;
+import com.wx.ovalimageview.RoundImageView;
+
+import butterknife.BindView;
+import butterknife.Unbinder;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProjectFragment extends Fragment {
+public class ProjectFragment extends BaseFragment {
 
 
-    public ProjectFragment() {
-        // Required empty public constructor
+    @BindView(R.id.head_bg)
+    ImageView headBg;
+    @BindView(R.id.avatar)
+    RoundImageView avatar;
+    Unbinder unbinder;
+
+    @Override
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_project;
+    }
+
+    @Override
+    protected void initView() {
+        Glide.with(this).load(R.mipmap.picture)
+                .bitmapTransform(new BlurTransformation(getContext(), 25), new CenterCrop(getContext()))
+                .into(headBg);
+
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the home_head_layout for this fragment
-        return inflater.inflate(R.layout.fragment_project, container, false);
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
     }
 
 }
