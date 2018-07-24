@@ -68,7 +68,6 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
         titleName.setText(k);
         list = new ArrayList<>();
         smartRefresh.autoRefresh();
-        mLoading.show();
     }
 
     @Override

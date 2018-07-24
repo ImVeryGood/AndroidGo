@@ -61,7 +61,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     public void setImmerBar() {
         super.setImmerBar();
-        mImmersionBar.fullScreen(true).statusBarColor(R.color.main_status_bar_blue).init();
+        mImmersionBar.fullScreen(true)
+                .statusBarColor(R.color.main_status_bar_blue).init();
     }
 
     @Override

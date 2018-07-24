@@ -57,10 +57,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initListener();
 
 
-    protected void setLogin() {
-
-    }
-
     protected void setLoading() {
         builder = new LoadingDailog.Builder(this)
                 .setMessage("加载中")
