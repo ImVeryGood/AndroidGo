@@ -14,8 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseActivity;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.DialogSearchFragment;
 import com.newdicooker.tempetek.androidgo.com.all.ui.fragment.HomeFragment;
@@ -29,9 +27,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
-public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     @BindView(R.id.title)
     TextView title;
@@ -81,15 +78,16 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         view = slideView.getHeaderView(0);
         avater = view.findViewById(R.id.avatar);
         headBg = view.findViewById(R.id.head_bg);
-        Glide.with(this).load(R.mipmap.picture)
+        /*Glide.with(this).load(R.mipmap.picture)
                 .bitmapTransform(new BlurTransformation(this, 50), new CenterCrop(this))
-                .into(headBg);
+                .into(headBg);*/
     }
 
 
     @Override
     protected void initListener() {
         setNestedListener();
+        avater.setOnClickListener(this);
     }
 
     private void setNestedListener() {
@@ -182,5 +180,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        /*头像点击事件avater*/
+
     }
 }

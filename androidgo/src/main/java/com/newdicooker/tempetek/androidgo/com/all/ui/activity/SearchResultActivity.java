@@ -6,14 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.newdicooker.tempetek.androidgo.R;
 import com.newdicooker.tempetek.androidgo.com.all.adapter.home.SearchArticleAdapter;
 import com.newdicooker.tempetek.androidgo.com.all.base.BaseActivity;
 import com.newdicooker.tempetek.androidgo.com.all.bean.HomeListBean;
-import com.newdicooker.tempetek.androidgo.com.all.utils.JudgeUtils;
-import com.newdicooker.tempetek.androidgo.com.all.utils.OkHttpManager;
 import com.newdicooker.tempetek.androidgo.com.all.inter.ItemClickListener;
 import com.newdicooker.tempetek.androidgo.com.all.url.NetUrl;
+import com.newdicooker.tempetek.androidgo.com.all.utils.JudgeUtils;
+import com.newdicooker.tempetek.androidgo.com.all.utils.OkHttpManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
@@ -41,7 +42,7 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
     private HomeListBean bean;
     private int page;
     private List<HomeListBean.DataBean.DatasBean> list;
-
+    private LoadingDailog mLoading;
     @Override
     protected int setLayoutId() {
         return R.layout.activity_search;
@@ -55,17 +56,23 @@ public class SearchResultActivity extends BaseActivity implements ItemClickListe
     }
 
     @Override
+    protected void setLoading() {
+        super.setLoading();
+        mLoading=loadingDailog;
+    }
+
+    @Override
     protected void initData() {
         mIntent = getIntent();
         k = mIntent.getStringExtra("k");
         titleName.setText(k);
         list = new ArrayList<>();
         smartRefresh.autoRefresh();
+        mLoading.show();
     }
 
     @Override
     protected void initListener() {
-
         searchArticleAdapter.onClickListener(this);
         smartRefresh.setEnableLoadmore(true);
         smartRefresh.setOnRefreshLoadmoreListener(this);

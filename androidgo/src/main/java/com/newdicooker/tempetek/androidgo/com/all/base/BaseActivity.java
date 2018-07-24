@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.gyf.barlibrary.ImmersionBar;
 
 import butterknife.ButterKnife;
@@ -16,6 +17,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ImmersionBar mImmersionBar;
     private Unbinder unbinder;
     private InputMethodManager imm;
+    private LoadingDailog.Builder builder;
+    protected LoadingDailog loadingDailog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +26,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setLayoutId());
         unbinder = ButterKnife.bind(this);
         setImmerBar();
+        setLoading();
         initView();
         initData();
         initListener();
 
     }
+
 
     /**
      * 布局id
@@ -35,11 +40,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return
      */
     protected abstract int setLayoutId();
-
-    /**
-     * 监听
-     */
-    protected abstract void initListener();
 
     /**
      * view的操作
@@ -51,8 +51,21 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract void initData();
 
+    /**
+     * 监听
+     */
+    protected abstract void initListener();
+
+
     protected void setLogin() {
 
+    }
+
+    protected void setLoading() {
+        builder = new LoadingDailog.Builder(this)
+                .setMessage("加载中")
+                .setCancelable(true);
+        loadingDailog = builder.create();
     }
 
     public void setImmerBar() {

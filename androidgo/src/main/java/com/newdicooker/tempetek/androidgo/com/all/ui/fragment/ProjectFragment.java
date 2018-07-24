@@ -11,7 +11,6 @@ import com.newdicooker.tempetek.androidgo.com.all.base.BaseFragment;
 import com.wx.ovalimageview.RoundImageView;
 
 import butterknife.BindView;
-import butterknife.Unbinder;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
@@ -24,7 +23,6 @@ public class ProjectFragment extends BaseFragment {
     ImageView headBg;
     @BindView(R.id.avatar)
     RoundImageView avatar;
-    Unbinder unbinder;
 
     @Override
     protected int setLayoutResourceID() {
