@@ -33,6 +33,7 @@ buildscript {
         jcenter()
     }
 }
+apply plugin: 'replugin-plugin-gradle'
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -88,6 +89,16 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     testCompile 'junit:junit:4.12'
     compile 'com.github.gittjy:LoadingDialog:1.0.2'
+    compile 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
 }
 // 依赖插件脚本
 //apply from: 'tinker-support.gradle'
+repluginPluginConfig {
+
+    //插件名
+    pluginName = "androidgo"
+    //宿主app的包名
+    hostApplicationId = "com.newdicooker.tempetek.hostreplugin"
+    //宿主app的启动activity
+    hostAppLauncherActivity = "com.newdicooker.tempetek.hostreplugin.MainActivity"
+}
