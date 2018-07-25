@@ -93,6 +93,7 @@ dependencies {
 }
 // 依赖插件脚本
 //apply from: 'tinker-support.gradle'
+/*插件名配置*/
 repluginPluginConfig {
 
     //插件名
