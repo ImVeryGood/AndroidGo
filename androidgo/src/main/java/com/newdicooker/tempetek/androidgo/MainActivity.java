@@ -167,9 +167,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.tab_navigation:
                 setFrament(2, getResources().getString(R.string.nagitation));
                 break;
-            case R.id.tab_project:
+            /*case R.id.tab_project:
                 setFrament(3, getResources().getString(R.string.project));
-                break;
+                break;*/
         }
         return true;
     }

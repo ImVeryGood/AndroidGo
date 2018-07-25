@@ -23,10 +23,10 @@
         android:title="@string/nagitation"
         app:showAsAction="ifRoom" />
 
-    <item
+   <!-- <item
         android:id="@+id/tab_project"
         android:enabled="true"
         android:icon="@drawable/project_select"
         android:title="@string/project"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />-->
 </menu>

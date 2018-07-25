@@ -86,7 +86,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         public LocalImageHolderView createHolder() {
                             return new LocalImageHolderView();
                         }
-                    }, bannerList).startTurning(2000);
+                    }, bannerList).startTurning(5000);
                     headHolder.banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                         @Override
                         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
